@@ -7,6 +7,7 @@ import AddCar from "../Pages/AddCar/AddCar";
 import BrowseCars from "../Pages/BrowseCars/BrowseCars";
 import MyBookings from "../Pages/MyBookings/MyBookings";
 import MyListings from "../Pages/MyListings/MyListings";
+import PrivateRouter from "../../Contexts/PrivateRouter";
 
 const router = createBrowserRouter([
     {
@@ -17,7 +18,7 @@ const router = createBrowserRouter([
                 index:true,Component:Home
             },
             {
-                path:"addCar",Component:AddCar
+                path: "addCar", element: <PrivateRouter><AddCar></AddCar></PrivateRouter>
             },
             {
                 path:"browseCars",Component:BrowseCars
