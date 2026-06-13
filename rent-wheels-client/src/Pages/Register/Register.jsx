@@ -1,9 +1,7 @@
 import React, { useContext } from 'react';
-import { AuthContext } from '../../../Contexts/AuthContexts';
 
 const Register = () => {
-    const { createUser, updateUserProfile } = useContext(AuthContext);
-    
+    const createUser,update = useContext();
     const handleRegister = (e) => {
         e.preventDefault();
         const name = e.target.name.value;
@@ -11,24 +9,18 @@ const Register = () => {
         const photo = e.target.photo.value;
         const password = e.target.password.value;
 
-        // const newUser = { name, email, photo, password }
-        // console.log("this is the newUser ", newUser);
+        const newUser = { name, email, photo, password }
 
+        console.log("this is the newUser ", newUser);
         createUser(email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
-                updateUserProfile(name, photo)
-                    .then(() => {
-                        console.log("user created including the name and imageURL")
-                    })
-                    .catch((error) => {
-                        console.log(error)
-                    })
+
                 console.log(user);
             })
             .catch((error) => {
-                console.log(error)
-            })
+            console.log(error)
+        })
     }
 
     return (
