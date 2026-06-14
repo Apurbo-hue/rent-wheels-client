@@ -15,7 +15,7 @@ const router = createBrowserRouter([
         Component: MainLayouts,
         children: [
             {
-                index:true,Component:Home
+                index:true,loader:()=>fetch('http://localhost:3000/cars'),Component:Home
             },
             {
                 path: "addCar", element: <PrivateRouter><AddCar></AddCar></PrivateRouter>
