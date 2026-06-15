@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 const CarsCard = ({ car }) => {
     const { _id, carName, description, category, hostedImageURL, availability, rentPricePerDay,providerName } = car
@@ -26,7 +27,7 @@ const CarsCard = ({ car }) => {
                         <div className="badge badge-outline">${rentPricePerDay}/day</div>
 
                     </div>
-                    <button className='btn btn-outline mt-2'>View Details</button>
+                    <Link to={`/carDetails/${_id}`}> <button  className='btn btn-outline w-full mt-2'>View Details</button></Link>                
                 </div>
             </div>
         </div>

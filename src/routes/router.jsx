@@ -8,6 +8,7 @@ import BrowseCars from "../Pages/BrowseCars/BrowseCars";
 import MyBookings from "../Pages/MyBookings/MyBookings";
 import MyListings from "../Pages/MyListings/MyListings";
 import PrivateRouter from "../../Contexts/PrivateRouter";
+import CarDetails from "../Pages/CarDetails/CarDetails";
 
 const router = createBrowserRouter([
     {
@@ -15,25 +16,30 @@ const router = createBrowserRouter([
         Component: MainLayouts,
         children: [
             {
-                index:true,loader:()=>fetch('http://localhost:3000/cars'),Component:Home
+                index: true, loader: () => fetch('http://localhost:3000/cars'), Component: Home
             },
             {
                 path: "addCar", element: <PrivateRouter><AddCar></AddCar></PrivateRouter>
             },
             {
-                path:"browseCars",Component:BrowseCars
+                path: "browseCars", Component: BrowseCars
             },
             {
-                path:"myBookings",Component:MyBookings
+                path: "carDetails/:id",
+                loader: ({ params }) => fetch(`http://localhost:3000/cars/${params.id}`),
+                Component: CarDetails
             },
             {
-                path:"mylistings",Component:MyListings
+                path: "myBookings", Component: MyBookings
             },
             {
-                path:"register",Component:Register
+                path: "mylistings", Component: MyListings
             },
             {
-                path:"login",Component:Login
+                path: "register", Component: Register
+            },
+            {
+                path: "login", Component: Login
             }
         ]
     }
