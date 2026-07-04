@@ -1,11 +1,13 @@
 import React, { useContext } from 'react';
-import { NavLink } from 'react-router';
+import { useNavigate } from 'react-router';
 import { AuthContext } from '../../../Contexts/AuthContexts';
 import useAxios from '../../../hooks/useAxios';
+import Swal from 'sweetalert2';
 
 const AddCar = () => {
     const { user } = useContext(AuthContext);
     const axiosInstance = useAxios();
+    const navigate = useNavigate();
 
     const handleAddCar = (e) => {
         e.preventDefault();
@@ -18,17 +20,24 @@ const AddCar = () => {
         const providerName = e.target.providerName.value;
         const providerEmail = e.target.providerEmail.value;
         const dateAdded = new Date().toISOString();
+        const form = e.target
 
-        const newCar = { carName, description, category, rentPricePerDay,location,hostedImageURL,providerName,providerEmail,dateAdded }
+        const newCar = { carName, description, category, rentPricePerDay, location, hostedImageURL, providerName, providerEmail, dateAdded }
 
         //add a new car to the mongoDB using the axios
-        axiosInstance.post("/cars",newCar)
-            .then(data =>
-            {
-                console.log(data.data);
+        axiosInstance.post("/cars", newCar)
+            .then(data => {
+                if (data.data.insertedId) {
+                    form.reset();
+                    Swal.fire({
+                        title: "Car added successfully!",
+                        icon: "success",
+                    });
+                    navigate("/")
+                }
+
             }
-        )
-    
+            )
 
     }
     return (

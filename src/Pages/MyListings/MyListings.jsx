@@ -5,7 +5,7 @@ import MyListingsTable from './MyListingsTable';
 const MyListings = () => {
     const [cars, setCars] = useState([]);
     const { user } = useContext(AuthContext);
-    console.log(user?.email);
+    // console.log(user?.email);
     useEffect(() => {
         fetch(`http://localhost:3000/cars?email=${user?.email}`)
             .then(res => res.json())
@@ -15,7 +15,7 @@ const MyListings = () => {
     },[user?.email])
     return (
         <div className='w-11/12 mx-auto'>
-            <MyListingsTable cars={cars}></MyListingsTable>
+            <MyListingsTable cars={cars} setCars={setCars}></MyListingsTable>
         </div>
     );
 };

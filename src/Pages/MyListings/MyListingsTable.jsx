@@ -2,7 +2,7 @@ import React from 'react';
 import Swal from 'sweetalert2';
 import useAxios from '../../../hooks/useAxios';
 
-const MyListingsTable = ({ cars }) => {
+const MyListingsTable = ({ cars ,setCars}) => {
     const axiosInstance = useAxios();
 
     const handleDelete = (id) => {
@@ -26,6 +26,8 @@ const MyListingsTable = ({ cars }) => {
                                 text: "Your file has been deleted.",
                                 icon: "success"
                             });
+                            const remainingCars = cars.filter(car => car._id !== id)
+                            setCars(remainingCars);
                         }
                     })
             }
