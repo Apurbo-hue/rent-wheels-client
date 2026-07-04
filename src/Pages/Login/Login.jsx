@@ -1,10 +1,15 @@
 import React from 'react';
 import { useContext } from 'react';
 import { AuthContext } from '../../../Contexts/AuthContexts';
-import { NavLink } from 'react-router';
+import { NavLink, useLocation, useNavigate } from 'react-router';
+import Swal from 'sweetalert2';
 
 const Login = () => {
     const { signInUser, signInGoogle } = useContext(AuthContext);
+    const location = useLocation();
+    const navigate = useNavigate();
+    const from = location.state?.from?.pathname || "/";
+
     const handleLogin = (e) => {
         e.preventDefault();
         const email = e.target.email.value;
@@ -16,7 +21,18 @@ const Login = () => {
         //sign in with email and password
         signInUser(email, password)
             .then((userCredential) => {
-                console.log(userCredential)
+                console.log(userCredential);
+                Swal.fire({
+                    position: "middle",
+                    icon: "success",
+                    title: "Logged in successfully",
+                    background: "#1f2937", 
+                    color: "#ffffff",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+
+                 navigate(from, { replace: true });
             })
             .catch((error) => {
                 console.log(error);
@@ -30,6 +46,16 @@ const Login = () => {
         signInGoogle()
             .then((userCredential) => {
                 console.log(userCredential)
+                Swal.fire({
+                    position: "middle",
+                    icon: "success",
+                    title: "Logged in successfully",
+                    background: "#1f2937", 
+                    color: "#ffffff",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                 navigate(from, { replace: true });
             })
             .catch((error) => {
                 console.log(error);

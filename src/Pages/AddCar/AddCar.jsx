@@ -4,6 +4,7 @@ import { AuthContext } from '../../../Contexts/AuthContexts';
 import useAxios from '../../../hooks/useAxios';
 import Swal from 'sweetalert2';
 
+
 const AddCar = () => {
     const { user } = useContext(AuthContext);
     const axiosInstance = useAxios();
@@ -32,6 +33,8 @@ const AddCar = () => {
                     Swal.fire({
                         title: "Car added successfully!",
                         icon: "success",
+                        background: "#1f2937",
+                        color: "#ffffff",
                     });
                     navigate("/")
                 }

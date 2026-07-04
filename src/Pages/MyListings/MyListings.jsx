@@ -10,9 +10,9 @@ const MyListings = () => {
         fetch(`http://localhost:3000/cars?email=${user?.email}`)
             .then(res => res.json())
             .then(data => setCars(data));
-        
-        
-    },[user?.email])
+
+
+    }, [user?.email])
     return (
         <div className='w-11/12 mx-auto'>
             <MyListingsTable cars={cars} setCars={setCars}></MyListingsTable>

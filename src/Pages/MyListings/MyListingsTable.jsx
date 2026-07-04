@@ -2,7 +2,7 @@ import React from 'react';
 import Swal from 'sweetalert2';
 import useAxios from '../../../hooks/useAxios';
 
-const MyListingsTable = ({ cars ,setCars}) => {
+const MyListingsTable = ({ cars, setCars }) => {
     const axiosInstance = useAxios();
 
     const handleDelete = (id) => {
@@ -14,7 +14,9 @@ const MyListingsTable = ({ cars ,setCars}) => {
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
+            confirmButtonText: "Yes, delete it!",
+            background: "#1f2937",
+            color: "#ffffff",
         }).then((result) => {
             if (result.isConfirmed) {
 
@@ -24,7 +26,9 @@ const MyListingsTable = ({ cars ,setCars}) => {
                             Swal.fire({
                                 title: "Deleted!",
                                 text: "Your file has been deleted.",
-                                icon: "success"
+                                icon: "success",
+                                background: "#1f2937",
+                                color: "#ffffff",
                             });
                             const remainingCars = cars.filter(car => car._id !== id)
                             setCars(remainingCars);
