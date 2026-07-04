@@ -1,15 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useLoaderData } from 'react-router';
 import FeaturedCars from '../../Components/FeaturedCars/FeaturedCars';
+import HeroBanner from '../../Components/HeroBanner/HeroBanner';
+import WhyRent from '../../Components/WhyRent/WhyRent';
 
 const Home = () => {
-    const [cars, setCars] = useState([]);
+   
     const carsData = useLoaderData();
-    console.log(carsData);
+    // console.log(carsData);
     return (
 
         <div>
-            <FeaturedCars carsData={carsData}></FeaturedCars>
+            <HeroBanner></HeroBanner>
+            <FeaturedCars key={carsData._id} carsData={carsData}></FeaturedCars>
+            <WhyRent></WhyRent>
         </div>
 
 

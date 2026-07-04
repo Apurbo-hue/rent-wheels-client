@@ -16,13 +16,13 @@ const router = createBrowserRouter([
         Component: MainLayouts,
         children: [
             {
-                index: true, loader: () => fetch('http://localhost:3000/cars'), Component: Home
+                index: true, loader: () => fetch('http://localhost:3000/featuredCars'), Component: Home
             },
             {
                 path: "addCar", element: <PrivateRouter><AddCar></AddCar></PrivateRouter>
             },
             {
-                path: "browseCars", Component: BrowseCars
+                path: "browseCars",loader:()=>fetch('http://localhost:3000/cars'), Component: BrowseCars
             },
             {
                 path: "carDetails/:id",

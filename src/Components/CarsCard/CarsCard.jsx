@@ -1,33 +1,89 @@
 import React from 'react';
+import { FaCar, FaDollarSign, FaMapMarkedAlt, FaUser } from 'react-icons/fa';
 import { Link } from 'react-router';
 
 const CarsCard = ({ car }) => {
-    const { _id, carName, description, category, hostedImageURL, availability, rentPricePerDay,providerName } = car
+    const { _id, carName, description, category, hostedImageURL, availability, rentPricePerDay, providerName, location } = car
     return (
-        <div>
-            <div className="card bg-base-100 w-96 shadow-sm border">
-                <figure>
+
+        <div className="max-w-sm my-2">
+            <div className="card bg-base-100 w-86 sm:w-96 border border-base-300 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+
+                {/* Image */}
+                <figure className="overflow-hidden w-full">
                     <img
                         src={hostedImageURL}
-                        alt="Shoes"
+                        alt={carName}
+                        className="h-56 w-full object-cover transition-transform duration-500 hover:scale-110"
                     />
                 </figure>
+
                 <div className="card-body">
-                    <h2 className="card-title">
-                        {carName}
-                        <div>{availability ? <h1 className='badge bg-green-500'>Available</h1> : <h1 className='badge bg-red-500'>Not Available</h1>}</div>
 
-                      
-                    </h2>
-                    <p>{description}</p>
-                    <p>Provider: { providerName}</p>
-                    <div className="card-actions justify-start">
+                    {/* Title + Availability */}
+                    <div className="flex justify-between items-start">
+                        <h2 className="card-title text-xl font-bold">
+                            {carName}
+                        </h2>
 
-                          <div className="badge badge-primary">{category}</div>
-                        <div className="badge badge-outline">${rentPricePerDay}/day</div>
+                        <span
+                            className={`badge text-white ${availability
+                                    ? "badge-success"
+                                    : "badge-error"
+                                }`}
+                        >
+                            {availability ? "Available" : "Booked"}
+                        </span>
+                    </div>
+
+                    {/* Description */}
+                    <p className="text-sm text-gray-500 line-clamp-2">
+                        {description}
+                    </p>
+
+                    {/* Provider */}
+                    <div className="flex items-center gap-2 mt-2 text-sm">
+                        <FaUser className="text-primary" />
+                        <span>{providerName}</span>
+                    </div>
+
+                    {/* Location */}
+                    <div className="flex items-center gap-2 text-sm">
+                        <FaMapMarkedAlt className="text-error" />
+                        <span>{location}</span>
+                    </div>
+
+                    {/* Bottom */}
+                    <div className="flex justify-between items-center mt-5">
+
+                        <div>
+                            <span className="badge badge-primary">
+                                <FaCar className="mr-1" />
+                                {category}
+                            </span>
+                        </div>
+
+                        <div className="text-right">
+                            <p className="text-xs text-gray-400">
+                                Per Day
+                            </p>
+
+                            <h2 className="text-2xl font-bold text-primary flex items-center justify-end">
+                                <FaDollarSign className="text-lg" />
+                                {rentPricePerDay}
+                            </h2>
+                        </div>
 
                     </div>
-                    <Link to={`/carDetails/${_id}`}> <button  className='btn btn-outline w-full mt-2'>View Details</button></Link>                
+
+                    <div className="mt-5">
+                        <Link to={`/carDetails/${_id}`}>
+                            <button className="btn btn-primary w-full">
+                                View Details →
+                            </button>
+                        </Link>
+                    </div>
+
                 </div>
             </div>
         </div>

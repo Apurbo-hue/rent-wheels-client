@@ -12,14 +12,14 @@ const AddCar = () => {
         const carName = e.target.carName.value;
         const description = e.target.description.value;
         const category = e.target.category.value;
-        const rentPrice = e.target.rentPrice.value;
+        const rentPricePerDay = e.target.rentPrice.value;
         const location = e.target.location.value;
-        const hostedImage = e.target.hostedImage.value;
+        const hostedImageURL = e.target.hostedImage.value;
         const providerName = e.target.providerName.value;
         const providerEmail = e.target.providerEmail.value;
         const dateAdded = new Date().toISOString();
 
-        const newCar = { carName, description, category, rentPrice,location,hostedImage,providerName,providerEmail,dateAdded }
+        const newCar = { carName, description, category, rentPricePerDay,location,hostedImageURL,providerName,providerEmail,dateAdded }
 
         //add a new car to the mongoDB using the axios
         axiosInstance.post("/cars",newCar)
