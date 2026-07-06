@@ -14,7 +14,8 @@ const MyListings = () => {
 
     }, [user?.email])
     return (
-        <div className='w-11/12 mx-auto'>
+        <div className='w-11/12 mx-auto my-6'>
+            <h1 className='text-center my-4'>Cars listed by <span className='font-bold'> {user?.displayName}</span></h1>
             <MyListingsTable cars={cars} setCars={setCars}></MyListingsTable>
         </div>
     );

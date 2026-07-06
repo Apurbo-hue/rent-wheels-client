@@ -1,15 +1,33 @@
-import React from 'react';
+import React, { use, useContext } from 'react';
 import { FaCar, FaEnvelope, FaMapMarkedAlt, FaUser } from 'react-icons/fa';
 import { useLoaderData, useNavigate, useParams } from 'react-router';
+import useAxios from '../../../hooks/useAxios';
+import { AuthContext } from '../../../Contexts/AuthContexts';
 
 const CarDetails = () => {
+    const axiosInstance = useAxios();
     const car = useLoaderData();
-    const { id } = useParams();
+
+    const { id: carId } = useParams();
+    const { user } = useContext(AuthContext)
     const navigate = useNavigate();
-    console.log(id);
+
+    const handleBooking = () => {
+        const userName = user.displayName;
+        const userEmail = user.email;
+        const bookingData = { carId, userName, userEmail, carName, hostedImageURL, category, rentPricePerDay, availability, }
+        console.log(bookingData);
+        axiosInstance.post("http://localhost:3000/bookings", bookingData)
+            .then(data => {
+                console.log(data)
+            }
+            )
+
+    }
+    console.log(carId);
     console.log(car);
-    const { _id, carName, description, hostedImageURL, category, location, providerEmail, providerName, rentPricePerDay, availability, dateAdded, bookingCount
-    } = car;
+
+    const { carName, description, hostedImageURL, category, location, providerEmail, providerName, rentPricePerDay, availability, dateAdded, bookingCount } = car;
 
     return (
 
@@ -38,8 +56,8 @@ const CarDetails = () => {
 
                         <span
                             className={`badge badge-lg ${availability
-                                    ? "badge-success"
-                                    : "badge-error"
+                                ? "badge-success"
+                                : "badge-error"
                                 }`}
                         >
                             {car.availability ? "Available" : "Not Available"}
@@ -134,13 +152,14 @@ const CarDetails = () => {
 
                         <button
                             className="btn btn-outline"
-                            onClick={()=>navigate(-1)}
+                            onClick={() => navigate(-1)}
                         >
                             Back
                         </button>
 
                         <button
                             className="btn btn-primary"
+                            onClick={() => handleBooking()}
                             disabled={!availability}
                         >
                             Book Now
