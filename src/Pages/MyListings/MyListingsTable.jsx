@@ -2,7 +2,7 @@ import React from 'react';
 import Swal from 'sweetalert2';
 import useAxios from '../../../hooks/useAxios';
 
-const MyListingsTable = ({ cars, setCars }) => {
+const MyListingsTable = ({ cars, setCars ,link }) => {
     const axiosInstance = useAxios();
 
     const handleDelete = (id) => {
@@ -20,7 +20,7 @@ const MyListingsTable = ({ cars, setCars }) => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                axiosInstance.delete(`/cars/${id}`)
+                axiosInstance.delete(`/${link}/${id}`)
                     .then(data => {
                         if (data.data.deletedCount) {
                             Swal.fire({

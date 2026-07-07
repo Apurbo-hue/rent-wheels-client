@@ -44,7 +44,8 @@ const AddCar = () => {
 
     }
     return (
-        <div className="hero bg-base-200 min-h-screen">
+        <div className="hero bg-[url('https://images.unsplash.com/photo-1512827618699-c1906f7e688b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTUxfHxjYXJ8ZW58MHx8MHx8fDA%3D')] hero-overlay bg-black/60 min-h-screen">
+            <div className='hero-overlay bg-black/60'></div>
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div className="card bg-base-100 w-full md:w-96 max-w-sm shrink-0 shadow-2xl">
                     <div className="card-body">
@@ -69,7 +70,6 @@ const AddCar = () => {
                                     <option value="LUXURY">LUXURY</option>
                                     <option value="ELECTRIC">ELECTRIC</option>
                                 </select>
-
 
                                 <div className='flex gap-2'>
                                     {/* rent price */}
@@ -99,8 +99,7 @@ const AddCar = () => {
                                 <input type="text" name='providerEmail' className="input w-full" value={user.email} readOnly />
 
 
-                                <button type='submit' className="btn h-12  mt-2 bg-[#0a4d33]  hover:bg-[#020f0a]">submit</button>
-
+                                <button type='submit' className="btn h-12  mt-2 bg-primary-gradient">submit</button>
                             </fieldset>
                         </form>
                     </div>

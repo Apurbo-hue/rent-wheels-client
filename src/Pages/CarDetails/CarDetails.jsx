@@ -3,6 +3,7 @@ import { FaCar, FaEnvelope, FaMapMarkedAlt, FaUser } from 'react-icons/fa';
 import { useLoaderData, useNavigate, useParams } from 'react-router';
 import useAxios from '../../../hooks/useAxios';
 import { AuthContext } from '../../../Contexts/AuthContexts';
+import Swal from 'sweetalert2';
 
 const CarDetails = () => {
     const axiosInstance = useAxios();
@@ -19,6 +20,14 @@ const CarDetails = () => {
         console.log(bookingData);
         axiosInstance.post("http://localhost:3000/bookings", bookingData)
             .then(data => {
+                if (data.data.insertedId) {
+                    Swal.fire({
+                        title: "Car added successfully!",
+                        icon: "success",
+                        background: "#1f2937",
+                        color: "#ffffff",
+                    });
+                }
                 console.log(data)
             }
             )
@@ -160,7 +169,7 @@ const CarDetails = () => {
                         <button
                             className="btn btn-primary"
                             onClick={() => handleBooking()}
-                            disabled={!availability}
+                            // disabled={!availability}
                         >
                             Book Now
                         </button>

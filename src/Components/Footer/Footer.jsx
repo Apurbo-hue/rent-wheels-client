@@ -4,7 +4,7 @@ import { FaEnvelope, FaPhoneAlt, FaMapMarkerAlt } from "react-icons/fa";
 
 const Footer = () => {
     return (
-        <footer className="bg-primary-gradient text-white mt-20">
+        <footer className="bg-primary-gradient text-white">
             <div className="max-w-7xl mx-auto px-6 py-12">
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">

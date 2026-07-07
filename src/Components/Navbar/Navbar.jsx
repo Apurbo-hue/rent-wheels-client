@@ -26,7 +26,8 @@ const Navbar = () => {
         <li><NavLink to="/myListings">My Listings</NavLink></li>
         <li><NavLink to="/myBookings">My Bookings</NavLink></li>
         <li><NavLink to="/browseCars">Browse Cars</NavLink></li>
-        <li><NavLink to="/login">Login</NavLink></li>
+        {!user && <li><NavLink to="/login">Login</NavLink></li>}
+       
     </>
     return (
         <div className="max-lg:collapse bg-primary-gradient shadow-sm w-full  rounded-md">

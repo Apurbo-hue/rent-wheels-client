@@ -30,7 +30,7 @@ const router = createBrowserRouter([
                 element:<PrivateRouter><CarDetails></CarDetails></PrivateRouter>
             },
             {
-                path: "myBookings", Component: MyBookings
+                path: "myBookings",element: <PrivateRouter><MyBookings></MyBookings></PrivateRouter>
             },
             {
                 path: "mylistings", element:<PrivateRouter><MyListings></MyListings></PrivateRouter>
