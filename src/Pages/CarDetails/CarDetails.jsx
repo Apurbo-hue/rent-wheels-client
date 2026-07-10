@@ -1,4 +1,4 @@
-import React, { use, useContext } from 'react';
+import React, { use, useContext, useState } from 'react';
 import { FaCar, FaEnvelope, FaMapMarkedAlt, FaUser } from 'react-icons/fa';
 import { useLoaderData, useNavigate, useParams } from 'react-router';
 import useAxios from '../../../hooks/useAxios';
@@ -7,7 +7,8 @@ import Swal from 'sweetalert2';
 
 const CarDetails = () => {
     const axiosInstance = useAxios();
-    const car = useLoaderData();
+    const carsData = useLoaderData();
+    const [car, setCar] = useState(carsData)
 
     const { id: carId } = useParams();
     const { user } = useContext(AuthContext)
@@ -16,25 +17,33 @@ const CarDetails = () => {
     const handleBooking = () => {
         const userName = user.displayName;
         const userEmail = user.email;
-        const bookingData = { carId, userName, userEmail, carName, hostedImageURL, category, rentPricePerDay, availability, }
-        console.log(bookingData);
+        const bookingData = { carId, userName, userEmail, carName, hostedImageURL, category, rentPricePerDay, availability }
+        // console.log(bookingData);
+
         axiosInstance.post("http://localhost:3000/bookings", bookingData)
             .then(data => {
                 if (data.data.insertedId) {
-                    Swal.fire({
-                        title: "Car added successfully!",
-                        icon: "success",
-                        background: "#1f2937",
-                        color: "#ffffff",
-                    });
+                    //update the car availability (patch)
+                    axiosInstance.patch(`/cars/${car?._id}`, { availability: false })
+                        .then((data) => {
+                            setCar((currentCar) => ({ ...currentCar, availability: false }))
+                            Swal.fire({
+                                title: "Car booked successfully!",
+                                icon: "success",
+                                background: "#1f2937",
+                                color: "#ffffff",
+                            });
+                        })
+
+
                 }
                 console.log(data)
             }
             )
 
     }
-    console.log(carId);
-    console.log(car);
+    // console.log(carId);
+    // console.log(car);
 
     const { carName, description, hostedImageURL, category, location, providerEmail, providerName, rentPricePerDay, availability, dateAdded, bookingCount } = car;
 
@@ -62,11 +71,10 @@ const CarDetails = () => {
                         <h1 className="text-4xl font-bold">
                             {carName}
                         </h1>
-
                         <span
                             className={`badge badge-lg ${availability
                                 ? "badge-success"
-                                : "badge-error"
+                                : "badge bg-red-600"
                                 }`}
                         >
                             {car.availability ? "Available" : "Not Available"}
@@ -166,10 +174,12 @@ const CarDetails = () => {
                             Back
                         </button>
 
+
                         <button
                             className="btn btn-primary"
                             onClick={() => handleBooking()}
-                            // disabled={!availability}
+                            disabled={!availability}
+
                         >
                             Book Now
                         </button>

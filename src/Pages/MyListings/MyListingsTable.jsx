@@ -1,11 +1,13 @@
 import React from 'react';
 import Swal from 'sweetalert2';
 import useAxios from '../../../hooks/useAxios';
+import { Navigate, useNavigate } from 'react-router';
 
-const MyListingsTable = ({ cars, setCars ,link }) => {
+const MyListingsTable = ({ cars, setCars, link, keepUpdate }) => {
     const axiosInstance = useAxios();
+    const navigate = useNavigate();
 
-    const handleDelete = (id) => {
+    const handleDelete = (id,carId) => {
         // console.log(id);
         Swal.fire({
             title: "Are you sure?",
@@ -23,6 +25,7 @@ const MyListingsTable = ({ cars, setCars ,link }) => {
                 axiosInstance.delete(`/${link}/${id}`)
                     .then(data => {
                         if (data.data.deletedCount) {
+                              axiosInstance.patch(`/cars/${carId}`, { availability: true })
                             Swal.fire({
                                 title: "Deleted!",
                                 text: "Your file has been deleted.",
@@ -77,7 +80,7 @@ const MyListingsTable = ({ cars, setCars ,link }) => {
 
                             {/* Category */}
                             <td>
-                                <span className="badge badge-primary">
+                                <span className="badge badge-warning text-black">
                                     {car.category}
                                 </span>
                             </td>
@@ -94,8 +97,8 @@ const MyListingsTable = ({ cars, setCars ,link }) => {
                                         Available
                                     </span>
                                 ) : (
-                                    <span className="badge badge-error">
-                                        Booked
+                                    <span className="badge bg-red-500">
+                                        Not available
                                     </span>
                                 )}
                             </td>
@@ -104,11 +107,12 @@ const MyListingsTable = ({ cars, setCars ,link }) => {
                             <td>
                                 <div className="flex justify-center gap-2">
 
-                                    <button className="btn btn-sm btn-info text-white">
+                                    {keepUpdate ? <button onClick={()=>navigate(`/updateCar/${car._id}`)} className="btn btn-sm btn-primary text-white">
                                         Update
-                                    </button>
+                                    </button>: null}
 
-                                    <button onClick={() => handleDelete(car._id)} className="btn btn-sm btn-error text-white">
+
+                                    <button onClick={() => handleDelete(car._id,car.carId)} className="btn btn-sm bg-red-500 text-white">
                                         Delete
                                     </button>
 

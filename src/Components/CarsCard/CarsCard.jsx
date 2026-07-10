@@ -32,7 +32,7 @@ const CarsCard = ({ car }) => {
                                     : "badge bg-red-600"
                                 }`}
                         >
-                            {availability ? "Available" : "Booked"}
+                            {availability ? "Available" : "Not available"}
                         </span>
                     </div>
 

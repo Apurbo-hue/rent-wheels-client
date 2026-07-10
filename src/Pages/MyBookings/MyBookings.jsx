@@ -17,7 +17,7 @@ const MyBookings = () => {
     return (
         <div className='w-11/12 mx-auto my-6'>
             <h1 className='text-center my-4'>This are the cars booked by <span className='text-warningn font-bold'>{user?.displayName}</span></h1>
-             <MyListingsTable cars={cars} setCars={setCars} link="bookings"></MyListingsTable>
+             <MyListingsTable cars={cars} setCars={setCars} link="bookings" keepUpdate={false}></MyListingsTable>
         </div>
     );
 };
