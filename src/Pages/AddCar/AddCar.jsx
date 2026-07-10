@@ -11,6 +11,12 @@ const AddCar = () => {
     const navigate = useNavigate();
 
     const handleAddCar = (e) => {
+        const parseBoolean = (value) => {
+            if (value === "true") {
+                return true
+            }
+            return false
+        }
         e.preventDefault();
         const carName = e.target.carName.value;
         const description = e.target.description.value;
@@ -20,10 +26,15 @@ const AddCar = () => {
         const hostedImageURL = e.target.hostedImage.value;
         const providerName = e.target.providerName.value;
         const providerEmail = e.target.providerEmail.value;
+        const availableValue = parseBoolean(e.target.availability.value);
+        const availability = availableValue;
+        
+        console.log(typeof(availability))
         const dateAdded = new Date().toISOString();
         const form = e.target
 
-        const newCar = { carName, description, category, rentPricePerDay, location, hostedImageURL, providerName, providerEmail, dateAdded }
+        const newCar = { carName, description, category, rentPricePerDay, location, hostedImageURL, providerName, providerEmail, dateAdded, availability }
+        console.log(newCar);
 
         //add a new car to the mongoDB using the axios
         axiosInstance.post("/cars", newCar)
@@ -98,8 +109,20 @@ const AddCar = () => {
                                 <label className="label">Provider email</label>
                                 <input type="text" name='providerEmail' className="input w-full" value={user.email} readOnly />
 
+                                <label className="label">Car availability</label>
 
-                                <button type='submit' className="btn h-12  mt-2 bg-primary-gradient">submit</button>
+                                <div className='flex gap-2 p-4 border border-[#49505a] label rounded'>
+                                    <p>Is the car available?</p>
+
+                                    <input type="radio" name="availability" id="yes" value={true} />
+                                    <label for="yes">Yes</label>
+
+                                    <input type="radio" name="availability" id="no" value={false} />
+                                    <label for="no">No</label>
+                                </div>
+
+
+                                <button type='submit' className="btn h-12  mt-2 bg-warning text-black font-bold">Submit</button>
                             </fieldset>
                         </form>
                     </div>

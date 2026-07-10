@@ -19,7 +19,7 @@ const HeroBanner = () => {
         {/* Slide 1 */}
         <SwiperSlide>
 
-          <div className="hero min-h-[450px] bg-gradient-to-r from-blue-900 to-blue-600 text-white rounded-2xl">
+          <div className="hero min-h-[450px] bg-gradient-to-r from-slate-900 to-gray-700   text-white rounded-2xl">
 
             <div className="hero-content text-center">
 
@@ -34,7 +34,7 @@ const HeroBanner = () => {
                   vehicles at affordable daily rates.
                 </p>
 
-                <button className="btn btn-primary">
+                <button className="btn btn-warning">
                   Browse Cars
                 </button>
 
@@ -50,7 +50,7 @@ const HeroBanner = () => {
 
         <SwiperSlide>
 
-          <div className="hero min-h-[450px] bg-gradient-to-r from-green-900 to-green-600 text-white rounded-2xl">
+          <div className="hero min-h-[450px] bg-gradient-to-r from-blue-900 to-blue-600 text-white rounded-2xl">
 
             <div className="hero-content text-center">
 
@@ -65,7 +65,7 @@ const HeroBanner = () => {
                   online booking.
                 </p>
 
-                <button className="btn btn-success">
+                <button className="btn btn-primary">
                   Book Now
                 </button>
 
@@ -81,7 +81,7 @@ const HeroBanner = () => {
 
         <SwiperSlide>
 
-          <div className="hero min-h-112.5 bg-linear-to-r from-slate-900 to-gray-700 text-white rounded-2xl">
+          <div className="hero min-h-112.5 bg-linear-to-r from-green-900 to-green-600 text-white rounded-2xl">
 
             <div className="hero-content text-center">
 
@@ -96,7 +96,7 @@ const HeroBanner = () => {
                   and excellent customer support.
                 </p>
 
-                <button className="btn btn-warning">
+                <button className="btn btn-success">
                   Learn More
                 </button>
 

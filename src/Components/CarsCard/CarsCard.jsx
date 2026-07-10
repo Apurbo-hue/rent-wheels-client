@@ -29,7 +29,7 @@ const CarsCard = ({ car }) => {
                         <span
                             className={`badge text-white ${availability
                                     ? "badge-success"
-                                    : "badge-error"
+                                    : "badge bg-red-600"
                                 }`}
                         >
                             {availability ? "Available" : "Booked"}
@@ -43,7 +43,7 @@ const CarsCard = ({ car }) => {
 
                     {/* Provider */}
                     <div className="flex items-center gap-2 mt-2 text-sm">
-                        <FaUser className="text-primary" />
+                        <FaUser className="text-warning" />
                         <span>{providerName}</span>
                     </div>
 
@@ -57,7 +57,7 @@ const CarsCard = ({ car }) => {
                     <div className="flex justify-between items-center mt-5">
 
                         <div>
-                            <span className="badge badge-primary">
+                            <span className="badge badge-warning badge-outline">
                                 <FaCar className="mr-1" />
                                 {category}
                             </span>
@@ -68,7 +68,7 @@ const CarsCard = ({ car }) => {
                                 Per Day
                             </p>
 
-                            <h2 className="text-2xl font-bold text-primary flex items-center justify-end">
+                            <h2 className="text-2xl font-bold text-warning flex items-center justify-end">
                                 <FaDollarSign className="text-lg" />
                                 {rentPricePerDay}
                             </h2>
@@ -78,7 +78,7 @@ const CarsCard = ({ car }) => {
 
                     <div className="mt-5">
                         <Link to={`/carDetails/${_id}`}>
-                            <button className="btn btn-primary w-full">
+                            <button className="btn btn-warning w-full text-black">
                                 View Details →
                             </button>
                         </Link>
