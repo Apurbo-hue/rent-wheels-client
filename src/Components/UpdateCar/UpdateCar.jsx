@@ -86,7 +86,7 @@ const UpdateCar = () => {
                                 <div className='flex gap-2'>
                                     {/* rent price */}
                                     <div className='flex-col'>
-                                        <label className="label">Rent Price  $</label>
+                                        <label className="label">Rent Price Per Day $</label>
                                         <input type="text" name='rentPrice' className="input " defaultValue={car.rentPricePerDay} />
                                     </div>
 

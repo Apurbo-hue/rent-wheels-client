@@ -7,7 +7,7 @@ const MyListingsTable = ({ cars, setCars, link, keepUpdate }) => {
     const axiosInstance = useAxios();
     const navigate = useNavigate();
 
-    const handleDelete = (id,carId) => {
+    const handleDelete = (id, carId) => {
         // console.log(id);
         Swal.fire({
             title: "Are you sure?",
@@ -25,7 +25,7 @@ const MyListingsTable = ({ cars, setCars, link, keepUpdate }) => {
                 axiosInstance.delete(`/${link}/${id}`)
                     .then(data => {
                         if (data.data.deletedCount) {
-                              axiosInstance.patch(`/cars/${carId}`, { availability: true })
+                            axiosInstance.patch(`/cars/${carId}`, { availability: true })
                             Swal.fire({
                                 title: "Deleted!",
                                 text: "Your file has been deleted.",
@@ -107,12 +107,12 @@ const MyListingsTable = ({ cars, setCars, link, keepUpdate }) => {
                             <td>
                                 <div className="flex justify-center gap-2">
 
-                                    {keepUpdate ? <button onClick={()=>navigate(`/updateCar/${car._id}`)} className="btn btn-sm btn-primary text-white">
+                                    {keepUpdate ? <button onClick={() => navigate(`/updateCar/${car._id}`)} className="btn btn-sm btn-primary text-white">
                                         Update
-                                    </button>: null}
+                                    </button> : null}
 
 
-                                    <button onClick={() => handleDelete(car._id,car.carId)} className="btn btn-sm bg-red-500 text-white">
+                                    <button onClick={() => handleDelete(car._id, car.carId)} className="btn btn-sm bg-red-500 text-white">
                                         Delete
                                     </button>
 

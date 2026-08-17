@@ -17,33 +17,28 @@ const CarDetails = () => {
     const handleBooking = () => {
         const userName = user.displayName;
         const userEmail = user.email;
-        const bookingData = { carId, userName, userEmail, carName, hostedImageURL, category, rentPricePerDay, availability }
+        const bookingData = { carId, userName, userEmail, carName, hostedImageURL, category, rentPricePerDay, availability: false }
         // console.log(bookingData);
 
         axiosInstance.post("http://localhost:3000/bookings", bookingData)
             .then(data => {
                 if (data.data.insertedId) {
-                    //update the car availability (patch)
-                    axiosInstance.patch(`/cars/${car?._id}`, { availability: false })
-                        .then((data) => {
-                            setCar((currentCar) => ({ ...currentCar, availability: false }))
-                            Swal.fire({
-                                title: "Car booked successfully!",
-                                icon: "success",
-                                background: "#1f2937",
-                                color: "#ffffff",
-                            });
-                        })
 
-
+                    //update the car on UI
+                    setCar((currentCar) => ({ ...currentCar, bookingCount: bookingCount + 1, availability: false }))
+                    Swal.fire({
+                        title: "Car booked successfully!",
+                        icon: "success",
+                        background: "#1f2937",
+                        color: "#ffffff",
+                    });
                 }
-                console.log(data)
+                // console.log(data)
             }
             )
 
     }
-    // console.log(carId);
-    // console.log(car);
+
 
     const { carName, description, hostedImageURL, category, location, providerEmail, providerName, rentPricePerDay, availability, dateAdded, bookingCount } = car;
 

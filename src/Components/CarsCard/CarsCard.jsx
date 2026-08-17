@@ -7,8 +7,8 @@ const CarsCard = ({ car }) => {
     return (
 
         <div className="max-w-sm my-2">
-            <div className="card bg-base-100 w-86 sm:w-96 border border-base-300 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-
+            <div className="card bg-[#0b0909] w-86 sm:w-96 border border-base-300 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+             {/* 0b0909 */}
                 {/* Image */}
                 <figure className="overflow-hidden w-full">
                     <img

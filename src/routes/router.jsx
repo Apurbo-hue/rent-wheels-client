@@ -25,10 +25,6 @@ const router = createBrowserRouter([
             {             
                 path: "updateCar/:id", loader: ({ params }) => fetch(`http://localhost:3000/cars/${params.id}`),
                 element: <PrivateRouter><UpdateCar></UpdateCar></PrivateRouter>
-            }
-            ,
-            {
-                path: "browseCars",loader:()=>fetch('http://localhost:3000/cars'), Component: BrowseCars
             },
             {
                 path: "carDetails/:id",
@@ -40,6 +36,9 @@ const router = createBrowserRouter([
             },
             {
                 path: "mylistings", element:<PrivateRouter><MyListings></MyListings></PrivateRouter>
+            },
+            {
+                path: "browseCars",loader:()=>fetch('http://localhost:3000/cars'), Component: BrowseCars,hydrateFallbackElement:<span className="loading loading-spinner loading-md"></span>
             },
             {
                 path: "register", Component: Register
